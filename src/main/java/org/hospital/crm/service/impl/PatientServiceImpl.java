@@ -29,4 +29,34 @@ public class PatientServiceImpl implements PatientService {
         repository.findAll().forEach(patientEntity -> patients.add(mapper.map(patientEntity, Patient.class)));
         return patients;
     }
+
+    @Override
+    public void deleteById(Integer id) {
+        repository.deleteById(id);
+    }
+
+    @Override
+    public List<Patient> getPatientsByName(String name) {
+        List<Patient> patients = new ArrayList<>();
+        repository.findByName(name).forEach(patientEntity -> patients.add(mapper.map(patientEntity, Patient.class)));
+        return patients;
+    }
+
+    @Override
+    public Patient getPatientByID(Integer id) {
+        return mapper.map(repository.findById(id).get(), Patient.class);
+    }
+
+    @Override
+    public Patient getPatientsByNIC(String nic) {
+        return mapper.map(repository.findByNic(nic), Patient.class);
+    }
+
+    @Override
+    public List<Patient> getPatientsByContact(String contact) {
+        List<Patient> patients = new ArrayList<>();
+        repository.findByContact(contact).forEach(patientEntity -> patients.add(mapper.map(patientEntity, Patient.class)));
+        return patients;
+    }
+
 }
