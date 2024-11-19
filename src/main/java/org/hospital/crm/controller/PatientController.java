@@ -15,7 +15,7 @@ public class PatientController {
 
     private final PatientService service;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Patient> getAllPatients() {
         return service.getAllPatients();
     }
